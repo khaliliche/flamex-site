@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
+import { CartProvider } from "@/lib/cart-context";
 
 export const metadata: Metadata = {
   title: "FlameX Briquets Premium",
@@ -16,9 +18,12 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="bg-black min-h-screen">
-        <Header />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+          <WhatsAppFloat />
+        </CartProvider>
       </body>
     </html>
   );

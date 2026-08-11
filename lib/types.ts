@@ -4,6 +4,7 @@ export type Product = {
   price: number
   category: 'dragon' | 'ange' | 'carte' | 'rond'
   images: string[]
+  colors: string[]
   description: string
   stock: boolean
   created_at: string
