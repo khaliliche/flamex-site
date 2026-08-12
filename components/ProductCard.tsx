@@ -2,6 +2,8 @@
 import { Product } from '@/lib/types'
 import { useState } from 'react'
 import { useCart } from '@/lib/cart-context'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export default function ProductCard({ product }: { product: Product }) {
   const [current, setCurrent] = useState(0)
@@ -24,19 +26,30 @@ export default function ProductCard({ product }: { product: Product }) {
   }
 
   return (
-    <div className="bg-zinc-900 border border-orange-500/20 rounded-xl overflow-hidden hover:border-orange-500 transition group">
-      <div className="aspect-square bg-zinc-800 relative overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ y: -6 }}
+      className="bg-zinc-900 border border-orange-500/20 rounded-xl overflow-hidden hover:border-orange-500 hover:shadow-[0_0_25px_rgba(255,140,0,0.25)] transition-all group"
+    >
+      <Link href={`/produit/${product.id}`} className="block aspect-square bg-zinc-800 relative overflow-hidden">
         {media[current] && (
           isVideo(media[current]) ? (
-            <video src={media[current]} className="w-full h-full object-cover" controls muted />
+            <video src={media[current]} className="w-full h-full object-cover" muted />
           ) : (
-            <img src={media[current]} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src={media[current]} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
           )
         )}
         {media.length > 1 && (
           <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
             {media.map((_, i) => (
-              <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full ${i === current ? 'bg-orange-500' : 'bg-white/40'}`} />
+              <button
+                key={i}
+                onClick={(e) => { e.preventDefault(); setCurrent(i) }}
+                className={`w-2 h-2 rounded-full transition ${i === current ? 'bg-orange-500' : 'bg-white/40'}`}
+              />
             ))}
           </div>
         )}
@@ -45,9 +58,11 @@ export default function ProductCard({ product }: { product: Product }) {
             Rupture
           </div>
         )}
-      </div>
+      </Link>
       <div className="p-4">
-        <h3 className="text-white font-semibold mb-1">{product.name}</h3>
+        <Link href={`/produit/${product.id}`}>
+          <h3 className="text-white font-semibold mb-1 hover:text-orange-500 transition">{product.name}</h3>
+        </Link>
         <p className="text-orange-500 font-bold mb-2">{product.price} DH</p>
         {product.colors?.length > 0 && (
           <div className="flex gap-1 flex-wrap mb-3">
@@ -62,14 +77,15 @@ export default function ProductCard({ product }: { product: Product }) {
             ))}
           </div>
         )}
-        <button
+        <motion.button
+          whileTap={{ scale: 0.95 }}
           onClick={handleAdd}
           disabled={!product.stock}
           className="w-full bg-orange-500 text-black font-bold py-2 rounded-lg hover:bg-orange-400 transition disabled:bg-zinc-700 disabled:text-gray-400 disabled:cursor-not-allowed"
         >
           {!product.stock ? 'Rupture de stock' : added ? 'Ajoute !' : 'Ajouter au panier'}
-        </button>
+        </motion.button>
       </div>
-    </div>
+    </motion.div>
   )
 }

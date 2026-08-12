@@ -1,48 +1,44 @@
-import Link from 'next/link'
+import { getProducts, getGallery } from "@/lib/products"
+import HeroSection from "@/components/HeroSection"
+import CategoryGrid from "@/components/CategoryGrid"
+import TrustBadges from "@/components/TrustBadges"
+import InstagramCTA from "@/components/InstagramCTA"
+import HomeGallery from "@/components/HomeGallery"
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts()
+  const gallery = await getGallery()
+
+  const findImage = (category: string) =>
+    products.find((p) => p.category === category && p.images?.length > 0)?.images[0]
+
+  const images = {
+    dragon: findImage("dragon"),
+    ange: findImage("ange"),
+    carte: findImage("carte"),
+    rond: findImage("rond"),
+  }
+
   return (
     <main>
-      <section className="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 bg-gradient-to-b from-black via-zinc-900 to-black">
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
-          FLAME<span className="text-orange-500">X</span>
-        </h1>
-        <p className="text-gray-400 text-lg md:text-xl mb-8 max-w-xl">
-          Briquets torch premium - Dragon, Ange, Carte, Rond
-        </p>
-        <Link
-          href="/catalogue"
-          className="bg-orange-500 text-black font-bold px-8 py-4 rounded-full hover:bg-orange-400 transition"
-        >
-          Voir le catalogue
-        </Link>
+      <HeroSection />
+      <TrustBadges />
+
+      <section className="py-20 px-6 bg-black relative">
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+          Nos <span className="text-orange-500">collections</span>
+        </h2>
+        <CategoryGrid images={images} />
       </section>
 
-      <section className="py-16 px-6 bg-black">
-        <h2 className="text-3xl font-bold text-white text-center mb-12">
-          Nos collections
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          <Link href="/catalogue?category=dragon" className="group">
-            <div className="aspect-square bg-zinc-900 border border-orange-500/20 rounded-xl flex items-center justify-center group-hover:border-orange-500 transition">
-              <span className="text-white font-semibold">Dragon</span>
-            </div>
-          </Link>
-          <Link href="/catalogue?category=ange" className="group">
-            <div className="aspect-square bg-zinc-900 border border-orange-500/20 rounded-xl flex items-center justify-center group-hover:border-orange-500 transition">
-              <span className="text-white font-semibold">Ange</span>
-            </div>
-          </Link>
-          <Link href="/catalogue?category=carte" className="group">
-            <div className="aspect-square bg-zinc-900 border border-orange-500/20 rounded-xl flex items-center justify-center group-hover:border-orange-500 transition">
-              <span className="text-white font-semibold">Carte Flamme</span>
-            </div>
-          </Link>
-          <Link href="/catalogue?category=rond" className="group">
-            <div className="aspect-square bg-zinc-900 border border-orange-500/20 rounded-xl flex items-center justify-center group-hover:border-orange-500 transition">
-              <span className="text-white font-semibold">Rond</span>
-            </div>
-          </Link>
+      <HomeGallery images={gallery} />
+
+      <InstagramCTA />
+
+      <section className="py-16 px-6 bg-gradient-to-b from-black to-zinc-950 text-center">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-orange-500 font-semibold mb-2">Paiement a la livraison</p>
+          <p className="text-gray-400">Livraison partout au Maroc - Commande simple via WhatsApp</p>
         </div>
       </section>
     </main>
