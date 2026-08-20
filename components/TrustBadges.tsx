@@ -10,7 +10,7 @@ const badges = [
 
 export default function TrustBadges() {
   return (
-    <section className="py-16 px-6 bg-zinc-950 border-y border-orange-500/10">
+    <section className="py-16 px-6 bg-zinc-950 border-y border-red-600/10">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
         {badges.map((b, i) => (
           <motion.div

@@ -17,7 +17,7 @@ export default async function Catalogue({
   return (
     <main className="min-h-screen bg-black px-6 py-12">
       <h1 className="text-4xl font-bold text-white text-center mb-8">
-        Notre <span className="text-orange-500">Catalogue</span>
+        Notre <span className="text-red-600">Catalogue</span>
       </h1>
 
       <CategoryFilter selectedCategory={selectedCategory} />

@@ -8,8 +8,8 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contacter sur WhatsApp"
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-br from-orange-500 via-red-600 to-red-700"
-      animate={{ boxShadow: ["0 0 15px rgba(255,80,20,0.5)", "0 0 30px rgba(220,20,20,0.8)", "0 0 15px rgba(255,80,20,0.5)"] }}
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-br from-red-600 via-red-700 to-black border border-red-500/40"
+      animate={{ boxShadow: ["0 0 15px rgba(220,38,38,0.5)", "0 0 30px rgba(220,38,38,0.85)", "0 0 15px rgba(220,38,38,0.5)"] }}
       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       whileHover={{ scale: 1.15 }}
     >

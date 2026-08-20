@@ -32,7 +32,7 @@ export default function ProductCard({ product }: { product: Product }) {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -6 }}
-      className="bg-zinc-900 border border-orange-500/20 rounded-xl overflow-hidden hover:border-orange-500 hover:shadow-[0_0_25px_rgba(255,140,0,0.25)] transition-all group"
+      className="bg-zinc-900 border border-red-600/20 rounded-xl overflow-hidden hover:border-red-600 hover:shadow-[0_0_25px_rgba(220,38,38,0.25)] transition-all group"
     >
       <Link href={`/produit/${product.id}`} className="block aspect-square bg-zinc-800 relative overflow-hidden">
         {media[current] && (
@@ -48,7 +48,7 @@ export default function ProductCard({ product }: { product: Product }) {
               <button
                 key={i}
                 onClick={(e) => { e.preventDefault(); setCurrent(i) }}
-                className={`w-2 h-2 rounded-full transition ${i === current ? 'bg-orange-500' : 'bg-white/40'}`}
+                className={`w-2 h-2 rounded-full transition ${i === current ? 'bg-red-600' : 'bg-white/40'}`}
               />
             ))}
           </div>
@@ -61,16 +61,16 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="p-4">
         <Link href={`/produit/${product.id}`}>
-          <h3 className="text-white font-semibold mb-1 hover:text-orange-500 transition">{product.name}</h3>
+          <h3 className="text-white font-semibold mb-1 hover:text-red-600 transition">{product.name}</h3>
         </Link>
-        <p className="text-orange-500 font-bold mb-2">{product.price} DH</p>
+        <p className="text-red-600 font-bold mb-2">{product.price} DH</p>
         {product.colors?.length > 0 && (
           <div className="flex gap-1 flex-wrap mb-3">
             {product.colors.map((color, i) => (
               <button
                 key={i}
                 onClick={() => setSelectedColor(color)}
-                className={`text-xs px-2 py-1 rounded-full border transition ${selectedColor === color ? 'bg-orange-500 text-black border-orange-500' : 'bg-zinc-800 text-gray-300 border-zinc-700'}`}
+                className={`text-xs px-2 py-1 rounded-full border transition ${selectedColor === color ? 'bg-red-600 text-white border-red-600' : 'bg-zinc-800 text-gray-300 border-zinc-700'}`}
               >
                 {color}
               </button>
@@ -81,7 +81,7 @@ export default function ProductCard({ product }: { product: Product }) {
           whileTap={{ scale: 0.95 }}
           onClick={handleAdd}
           disabled={!product.stock}
-          className="w-full bg-orange-500 text-black font-bold py-2 rounded-lg hover:bg-orange-400 transition disabled:bg-zinc-700 disabled:text-gray-400 disabled:cursor-not-allowed"
+          className="w-full bg-red-600 text-white font-bold py-2 rounded-lg hover:bg-red-500 transition disabled:bg-zinc-700 disabled:text-gray-400 disabled:cursor-not-allowed"
         >
           {!product.stock ? 'Rupture de stock' : added ? 'Ajoute !' : 'Ajouter au panier'}
         </motion.button>

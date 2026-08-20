@@ -23,7 +23,7 @@ export default function Panier() {
     return (
       <main className="min-h-screen bg-black px-6 py-20 text-center">
         <h1 className="text-3xl font-bold text-white mb-4">Ton panier est vide</h1>
-        <Link href="/catalogue" className="text-orange-500 hover:underline">
+        <Link href="/catalogue" className="text-red-600 hover:underline">
           Voir le catalogue
         </Link>
       </main>
@@ -35,7 +35,7 @@ export default function Panier() {
   return (
     <main className="min-h-screen bg-black px-6 py-12">
       <h1 className="text-4xl font-bold text-white text-center mb-12">
-        Mon <span className="text-orange-500">Panier</span>
+        Mon <span className="text-red-600">Panier</span>
       </h1>
       <div className="max-w-2xl mx-auto">
         <div className="space-y-3 mb-8">
@@ -45,7 +45,7 @@ export default function Panier() {
               <div className="flex-1">
                 <p className="text-white font-semibold">{item.name}</p>
                 {item.color && <p className="text-gray-400 text-sm">{item.color}</p>}
-                <p className="text-orange-500 font-bold">{item.price} DH</p>
+                <p className="text-red-600 font-bold">{item.price} DH</p>
               </div>
               <div className="flex items-center gap-2">
                 <button onClick={() => updateQuantity(item.id, item.color, item.quantity - 1)} className="w-8 h-8 bg-zinc-800 text-white rounded">-</button>
@@ -59,10 +59,10 @@ export default function Panier() {
           ))}
         </div>
 
-        <div className="bg-zinc-900 border border-orange-500/30 rounded-xl p-6 mb-8">
+        <div className="bg-zinc-900 border border-red-600/30 rounded-xl p-6 mb-8">
           <div className="flex justify-between text-xl font-bold text-white mb-2">
             <span>Total</span>
-            <span className="text-orange-500">{total} DH</span>
+            <span className="text-red-600">{total} DH</span>
           </div>
           <p className="text-gray-400 text-sm">Paiement a la livraison - Livraison partout au Maroc</p>
         </div>

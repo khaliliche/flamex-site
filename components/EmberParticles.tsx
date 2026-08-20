@@ -15,7 +15,7 @@ export default function EmberParticles() {
 
     type Particle = { x: number; y: number; r: number; speed: number; opacity: number; drift: number }
     const particles: Particle[] = []
-    const colors = ['255,140,0', '255,80,20', '255,200,50']
+    const colors = ['220,38,38', '185,28,28', '248,113,113']
 
     for (let i = 0; i < 60; i++) {
       particles.push({

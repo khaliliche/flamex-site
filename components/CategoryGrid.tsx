@@ -28,7 +28,7 @@ export default function CategoryGrid({ images }: { images: CategoryImages }) {
           transition={{ duration: 0.5, delay: i * 0.1 }}
         >
           <Link href={`/catalogue?category=${cat.slug}`} className="group block">
-            <div className="aspect-square bg-zinc-900 border border-orange-500/20 rounded-xl relative overflow-hidden group-hover:border-orange-500 group-hover:shadow-[0_0_25px_rgba(255,140,0,0.4)] group-hover:-translate-y-1 transition-all duration-300">
+            <div className="aspect-square bg-zinc-900 border border-red-600/20 rounded-xl relative overflow-hidden group-hover:border-red-600 group-hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] group-hover:-translate-y-1 transition-all duration-300">
               {cat.img ? (
                 <img
                   src={cat.img}

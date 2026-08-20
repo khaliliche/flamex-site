@@ -1,5 +1,6 @@
-﻿"use client";
-import { motion } from "framer-motion";
+﻿"use client"
+
+import { motion } from "framer-motion"
 
 export default function InstagramCTA() {
   return (
@@ -14,10 +15,10 @@ export default function InstagramCTA() {
         href="https://www.instagram.com/flamex.store1/"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block border border-orange-500 text-orange-500 font-semibold px-8 py-3 rounded-full hover:bg-orange-500 hover:text-black transition-all"
+        className="inline-block border border-red-600 text-red-600 font-semibold px-8 py-3 rounded-full hover:bg-red-600 hover:text-white transition-all"
       >
         @flamex.store1
       </a>
     </motion.div>
-  );
+  )
 }

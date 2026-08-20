@@ -1,43 +1,57 @@
-'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { getProducts, getGallery } from "@/lib/products"
+import HeroSection from "@/components/HeroSection"
+import CategoryGrid from "@/components/CategoryGrid"
+import TrustBadges from "@/components/TrustBadges"
+import InstagramCTA from "@/components/InstagramCTA"
+import HomeGallery from "@/components/HomeGallery"
 
-export default function AdminLogin() {
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const router = useRouter()
+export default async function Home() {
+  const products = await getProducts()
+  const gallery = await getGallery()
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (password === 'sohailflame@') {
-      sessionStorage.setItem('admin_auth', 'true')
-      router.push('/admin/dashboard')
-    } else {
-      setError('Mot de passe incorrect')
-    }
+  const findImage = (category: string) =>
+    products.find((p) => p.category === category && p.images?.length > 0)?.images[0]
+
+  const images = {
+    dragon: findImage("dragon"),
+    ange: findImage("ange"),
+    carte: findImage("carte"),
+    rond: findImage("rond"),
   }
 
   return (
-    <main className="min-h-screen bg-black flex items-center justify-center px-6">
-      <form onSubmit={handleLogin} className="bg-zinc-900 border border-orange-500/30 rounded-xl p-8 w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-white mb-6 text-center">
-          Admin FLAME<span className="text-orange-500">X</span>
-        </h1>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Mot de passe"
-          className="w-full bg-black border border-zinc-700 rounded-lg px-4 py-3 text-white mb-4 focus:border-orange-500 outline-none"
-        />
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-        <button
-          type="submit"
-          className="w-full bg-orange-500 text-black font-bold py-3 rounded-lg hover:bg-orange-400 transition"
-        >
-          Se connecter
-        </button>
-      </form>
+    <main>
+      <HeroSection />
+      <TrustBadges />
+
+      <section className="py-20 px-6 bg-black relative">
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-3">
+          Nos <span className="text-red-600">collections</span>
+        </h2>
+        <p className="text-gray-500 text-center mb-16 max-w-md mx-auto">
+          Quatre designs signature, chacun grave a la main.
+        </p>
+        <CategoryGrid images={images} />
+      </section>
+
+      <HomeGallery images={gallery} />
+
+      <section className="py-16 px-6 bg-zinc-950 border-y border-red-600/10 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          Suis-nous sur <span className="text-red-600">Instagram</span>
+        </h2>
+        <p className="text-gray-500 mb-8 max-w-md mx-auto">
+          Nouveautes, coulisses et commandes en story.
+        </p>
+        <InstagramCTA />
+      </section>
+
+      <section className="py-16 px-6 bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-center">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-white text-xl md:text-2xl font-bold mb-2">Paiement a la livraison</p>
+          <p className="text-red-100">Livraison partout au Maroc - Commande simple via WhatsApp</p>
+        </div>
+      </section>
     </main>
   )
 }
