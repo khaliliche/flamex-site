@@ -31,8 +31,8 @@ export default function ProductCard({ product }: { product: Product }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5 }}
-      whileHover={{ y: -6 }}
-      className="bg-zinc-900 border border-red-600/20 rounded-xl overflow-hidden hover:border-red-600 hover:shadow-[0_0_25px_rgba(220,38,38,0.25)] transition-all group"
+      whileHover={{ y: -8 }}
+      className="bg-zinc-900 border border-red-600/20 rounded-2xl overflow-hidden hover:border-red-600 hover:shadow-[0_8px_40px_rgba(220,38,38,0.3)] transition-all duration-300 group"
     >
       <Link href={`/produit/${product.id}`} className="block aspect-square bg-zinc-800 relative overflow-hidden">
         {media[current] && (
@@ -42,6 +42,7 @@ export default function ProductCard({ product }: { product: Product }) {
             <img src={media[current]} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
           )
         )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         {media.length > 1 && (
           <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
             {media.map((_, i) => (
@@ -54,23 +55,23 @@ export default function ProductCard({ product }: { product: Product }) {
           </div>
         )}
         {!product.stock && (
-          <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+          <div className="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-display uppercase tracking-wider font-bold px-2.5 py-1 rounded-full shadow-[0_0_15px_rgba(220,38,38,0.5)]">
             Rupture
           </div>
         )}
       </Link>
-      <div className="p-4">
+      <div className="p-5">
         <Link href={`/produit/${product.id}`}>
-          <h3 className="text-white font-semibold mb-1 hover:text-red-600 transition">{product.name}</h3>
+          <h3 className="font-display uppercase tracking-wide text-white font-semibold text-sm mb-1.5 hover:text-red-600 transition">{product.name}</h3>
         </Link>
-        <p className="text-red-600 font-bold mb-2">{product.price} DH</p>
+        <p className="text-red-600 font-display font-bold text-lg mb-3">{product.price} <span className="text-xs align-top">DH</span></p>
         {product.colors?.length > 0 && (
-          <div className="flex gap-1 flex-wrap mb-3">
+          <div className="flex gap-1.5 flex-wrap mb-4">
             {product.colors.map((color, i) => (
               <button
                 key={i}
                 onClick={() => setSelectedColor(color)}
-                className={`text-xs px-2 py-1 rounded-full border transition ${selectedColor === color ? 'bg-red-600 text-white border-red-600' : 'bg-zinc-800 text-gray-300 border-zinc-700'}`}
+                className={`text-[11px] font-medium px-2.5 py-1 rounded-full border transition ${selectedColor === color ? 'bg-red-600 text-white border-red-600' : 'bg-zinc-800 text-gray-300 border-zinc-700 hover:border-red-600/50'}`}
               >
                 {color}
               </button>
@@ -81,7 +82,7 @@ export default function ProductCard({ product }: { product: Product }) {
           whileTap={{ scale: 0.95 }}
           onClick={handleAdd}
           disabled={!product.stock}
-          className="w-full bg-red-600 text-white font-bold py-2 rounded-lg hover:bg-red-500 transition disabled:bg-zinc-700 disabled:text-gray-400 disabled:cursor-not-allowed"
+          className="w-full bg-red-600 text-white font-display uppercase tracking-wide text-xs font-bold py-3 rounded-lg hover:bg-red-500 hover:shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all disabled:bg-zinc-700 disabled:text-gray-400 disabled:shadow-none disabled:cursor-not-allowed"
         >
           {!product.stock ? 'Rupture de stock' : added ? 'Ajoute !' : 'Ajouter au panier'}
         </motion.button>
