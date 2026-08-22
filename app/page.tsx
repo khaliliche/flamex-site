@@ -73,7 +73,7 @@ export default async function Home() {
           </p>
 
           <a
-            href="https://wa.me/212706560249"
+            href="https://wa.me/212706821094"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-red-600 text-white font-display uppercase tracking-wide text-sm font-semibold px-9 py-4 rounded-full hover:bg-red-500 hover:shadow-[0_0_35px_rgba(220,38,38,0.6)] transition-all"

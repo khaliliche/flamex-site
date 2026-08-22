@@ -8,6 +8,7 @@ export default function Panier() {
   const { items, removeItem, updateQuantity, total, clearCart } = useCart()
   const [nom, setNom] = useState('')
   const [telephone, setTelephone] = useState('')
+  const [ville, setVille] = useState('')
   const [adresse, setAdresse] = useState('')
 
   const handleCommander = () => {
@@ -15,7 +16,7 @@ export default function Panier() {
       name: `${i.name}${i.color ? ' (' + i.color + ')' : ''} x${i.quantity}`,
       price: i.price * i.quantity
     }))
-    const link = generateWhatsAppLink(whatsappItems, { nom, telephone, adresse })
+    const link = generateWhatsAppLink(whatsappItems, { nom, telephone, ville, adresse })
     window.open(link, '_blank')
   }
 
@@ -30,7 +31,7 @@ export default function Panier() {
     )
   }
 
-  const canOrder = nom.trim() && telephone.trim() && adresse.trim()
+  const canOrder = nom.trim() && telephone.trim() && ville.trim() && adresse.trim()
 
   return (
     <main className="min-h-screen bg-black px-6 py-12">
@@ -79,6 +80,12 @@ export default function Panier() {
             value={telephone}
             onChange={(e) => setTelephone(e.target.value)}
             placeholder="Telephone"
+            className="w-full bg-black border border-zinc-700 rounded-lg px-4 py-3 text-white"
+          />
+          <input
+            value={ville}
+            onChange={(e) => setVille(e.target.value)}
+            placeholder="Ville"
             className="w-full bg-black border border-zinc-700 rounded-lg px-4 py-3 text-white"
           />
           <input
