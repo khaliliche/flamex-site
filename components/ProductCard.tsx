@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { Product } from '@/lib/types'
 import { useState } from 'react'
 import { useCart } from '@/lib/cart-context'

@@ -1,4 +1,4 @@
-﻿import { getProducts } from '@/lib/products'
+﻿﻿import { getProducts } from '@/lib/products'
 import ProductCard from '@/components/ProductCard'
 import CategoryFilter from '@/components/CategoryFilter'
 

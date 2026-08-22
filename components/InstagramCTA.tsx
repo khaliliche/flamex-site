@@ -1,6 +1,5 @@
-﻿"use client"
-
-import { motion } from "framer-motion"
+﻿﻿"use client";
+import { motion } from "framer-motion";
 
 export default function InstagramCTA() {
   return (
@@ -20,5 +19,5 @@ export default function InstagramCTA() {
         @flamex.store1
       </a>
     </motion.div>
-  )
+  );
 }

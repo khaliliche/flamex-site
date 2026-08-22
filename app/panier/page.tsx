@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useCart } from '@/lib/cart-context'
 import { generateWhatsAppLink } from '@/lib/whatsapp'
 import { useState } from 'react'

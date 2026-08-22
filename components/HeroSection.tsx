@@ -1,170 +1,130 @@
-"use client"
-
+﻿"use client"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import EmberParticles from "@/components/EmberParticles"
 import GlowText from "@/components/GlowText"
 
+const specs = [
+  { label: "ALLUMAGE", value: "Torch jet" },
+  { label: "COUP DE VENT", value: "Résistant" },
+  { label: "RECHARGE", value: "Gaz butane" },
+  { label: "GRAVURE", value: "Faite main" },
+]
+
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center px-6 bg-gradient-to-b from-black via-zinc-950 to-black overflow-hidden">
-      {/* Mobile Background */}
+    <section className="relative min-h-[92vh] flex flex-col items-center justify-center px-6 bg-gradient-to-b from-black via-zinc-950 to-black overflow-hidden">
       <div className="lg:hidden absolute inset-0">
-        <Image
-          src="/hero-left.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover opacity-15 blur-sm"
-        />
-
+        <Image src="/hero-left.jpg" alt="" fill sizes="100vw" priority className="object-cover opacity-15 blur-sm" />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-black" />
       </div>
 
-      {/* Particles */}
       <EmberParticles />
+      <div className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-red-600/10 blur-[130px] pointer-events-none" />
 
-      {/* Central Glow */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-red-600/10 blur-[120px] pointer-events-none" />
-
-      {/* Left Image */}
       <motion.div
         initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 0.5, x: 0 }}
+        animate={{ opacity: 0.45, x: 0 }}
         transition={{ duration: 1.2 }}
-        className="hidden lg:block absolute left-0 top-0 h-full w-[28%]"
+        className="hidden lg:block absolute left-0 top-0 h-full w-[26%]"
       >
         <div className="relative h-full w-full">
           <Image
             src="/hero-left.jpg"
             alt="Briquets FlameX"
             fill
-            sizes="28vw"
+            sizes="26vw"
             priority
             className="object-cover"
             style={{
-              maskImage:
-                "linear-gradient(to right, black 40%, transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to right, black 40%, transparent 100%)",
+              maskImage: "linear-gradient(to right, black 35%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to right, black 35%, transparent 100%)",
             }}
           />
         </div>
       </motion.div>
 
-      {/* Right Image */}
       <motion.div
         initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 0.5, x: 0 }}
+        animate={{ opacity: 0.45, x: 0 }}
         transition={{ duration: 1.2 }}
-        className="hidden lg:block absolute right-0 top-0 h-full w-[28%]"
+        className="hidden lg:block absolute right-0 top-0 h-full w-[26%]"
       >
         <div className="relative h-full w-full">
           <Image
             src="/hero-right.jpg"
             alt="Briquet FlameX grave"
             fill
-            sizes="28vw"
+            sizes="26vw"
             className="object-cover"
             style={{
-              maskImage:
-                "linear-gradient(to left, black 40%, transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to left, black 40%, transparent 100%)",
+              maskImage: "linear-gradient(to left, black 35%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to left, black 35%, transparent 100%)",
             }}
           />
         </div>
       </motion.div>
 
-      {/* Main Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="relative z-10 text-center"
-      >
-        {/* Badge */}
+      <div className="relative z-10 text-center max-w-3xl">
         <motion.span
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="inline-block text-xs md:text-sm font-semibold uppercase tracking-widest text-red-500 border border-red-600/40 rounded-full px-4 py-1.5 mb-6"
+          className="inline-block font-mono text-[11px] md:text-xs uppercase tracking-[0.25em] text-red-500 border border-red-600/40 rounded-full px-4 py-1.5 mb-8"
         >
-          Nouveau · Livraison partout au Maroc
+          Édition Rabat · Livraison partout au Maroc
         </motion.span>
 
-        {/* Glow Text */}
-        <GlowText />
-
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="flex justify-center my-4"
-        >
-          <motion.div
-            animate={{
-              filter: [
-                "drop-shadow(0 0 15px rgba(220,38,38,0.5))",
-                "drop-shadow(0 0 30px rgba(185,28,28,0.8))",
-                "drop-shadow(0 0 15px rgba(220,38,38,0.5))",
-              ],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <Image
-              src="/logo.png"
-              alt="FlameX"
-              width={100}
-              height={100}
-              className="object-contain"
-            />
-          </motion.div>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.15 }}>
+          <GlowText />
         </motion.div>
 
-        {/* Description */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="text-gray-400 text-lg md:text-xl mb-8 max-w-xl mx-auto"
+          transition={{ delay: 0.55, duration: 0.9 }}
+          className="text-gray-400 text-lg md:text-xl mt-2 mb-10 max-w-xl mx-auto"
         >
-          Briquets torch premium - Dragon, Ange, Carte, Rond
+          Le briquet torch qui ne s&apos;éteint jamais. Dragon, Ange, Carte, Rond — gravés, pas imprimés.
         </motion.p>
 
-        {/* Buttons */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ delay: 0.75, duration: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
         >
-          {/* Catalogue */}
           <Link
             href="/catalogue"
-            className="inline-block bg-red-600 text-white font-bold px-8 py-4 rounded-full hover:bg-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] transition-all"
+            className="inline-block bg-red-600 text-white font-display uppercase tracking-wide text-sm font-semibold px-9 py-4 rounded-full hover:bg-red-500 hover:scale-105 hover:shadow-[0_0_35px_rgba(220,38,38,0.6)] transition-all"
           >
             Voir le catalogue
           </Link>
-
-          {/* WhatsApp */}
           <a
             href="https://wa.me/212706560249"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block border border-white/20 text-white font-semibold px-8 py-4 rounded-full hover:border-red-600 hover:text-red-500 transition-all"
+            className="inline-block border border-white/20 text-white font-display uppercase tracking-wide text-sm font-semibold px-9 py-4 rounded-full hover:border-red-600 hover:text-red-500 transition-all"
           >
             Commander sur WhatsApp
           </a>
         </motion.div>
-      </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.95, duration: 0.7 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-px bg-red-600/15 rounded-lg overflow-hidden max-w-2xl mx-auto"
+        >
+          {specs.map((s) => (
+            <div key={s.label} className="bg-black px-3 py-4">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-gray-500 mb-1">{s.label}</p>
+              <p className="text-white text-sm font-semibold">{s.value}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   )
 }
