@@ -1,26 +1,28 @@
 ﻿"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import EmberParticles from "@/components/EmberParticles"
 import GlowText from "@/components/GlowText"
 
-const specs = [
-  { label: "ALLUMAGE", value: "Torch jet" },
-  { label: "COUP DE VENT", value: "Résistant" },
-  { label: "RECHARGE", value: "Gaz butane" },
-  { label: "GRAVURE", value: "Faite main" },
-]
-
 export default function HeroSection() {
   return (
     <section className="relative min-h-[92vh] flex flex-col items-center justify-center px-6 bg-gradient-to-b from-black via-zinc-950 to-black overflow-hidden">
       <div className="lg:hidden absolute inset-0">
-        <Image src="/hero-left.jpg" alt="" fill sizes="100vw" priority className="object-cover opacity-15 blur-sm" />
+        <Image
+          src="/hero-left.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover opacity-15 blur-sm"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-black" />
       </div>
 
       <EmberParticles />
+
       <div className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-red-600/10 blur-[130px] pointer-events-none" />
 
       <motion.div
@@ -38,8 +40,10 @@ export default function HeroSection() {
             priority
             className="object-cover"
             style={{
-              maskImage: "linear-gradient(to right, black 35%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to right, black 35%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to right, black 35%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, black 35%, transparent 100%)",
             }}
           />
         </div>
@@ -59,8 +63,10 @@ export default function HeroSection() {
             sizes="26vw"
             className="object-cover"
             style={{
-              maskImage: "linear-gradient(to left, black 35%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to left, black 35%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to left, black 35%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to left, black 35%, transparent 100%)",
             }}
           />
         </div>
@@ -76,7 +82,11 @@ export default function HeroSection() {
           Édition Rabat · Livraison partout au Maroc
         </motion.span>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.15 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.15 }}
+        >
           <GlowText />
         </motion.div>
 
@@ -86,7 +96,8 @@ export default function HeroSection() {
           transition={{ delay: 0.55, duration: 0.9 }}
           className="text-gray-400 text-lg md:text-xl mt-2 mb-10 max-w-xl mx-auto"
         >
-          Le briquet torch qui ne s&apos;éteint jamais. Dragon, Ange, Carte, Rond — gravés, pas imprimés.
+          Le briquet torch qui ne s&apos;éteint jamais. Dragon, Ange, Carte,
+          Rond — gravés, pas imprimés.
         </motion.p>
 
         <motion.div
@@ -101,6 +112,7 @@ export default function HeroSection() {
           >
             Voir le catalogue
           </Link>
+
           <a
             href="https://wa.me/212706560249"
             target="_blank"
@@ -109,20 +121,6 @@ export default function HeroSection() {
           >
             Commander sur WhatsApp
           </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.95, duration: 0.7 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-px bg-red-600/15 rounded-lg overflow-hidden max-w-2xl mx-auto"
-        >
-          {specs.map((s) => (
-            <div key={s.label} className="bg-black px-3 py-4">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-gray-500 mb-1">{s.label}</p>
-              <p className="text-white text-sm font-semibold">{s.value}</p>
-            </div>
-          ))}
         </motion.div>
       </div>
     </section>

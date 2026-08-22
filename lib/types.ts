@@ -9,3 +9,10 @@ export type Product = {
   stock: boolean
   created_at: string
 }
+export type Testimonial = {
+  id: string
+  quote: string
+  city: string
+  rating: number
+  created_at: string
+}

@@ -44,3 +44,18 @@ body {
 .strike-mark {
   filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.6));
 }
+/* Continuous scrolling row for testimonials — list is duplicated once in JSX,
+   so translating exactly -50% loops seamlessly regardless of item count */
+@keyframes testimonial-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.testimonial-marquee {
+  width: max-content;
+  animation: testimonial-scroll 35s linear infinite;
+}

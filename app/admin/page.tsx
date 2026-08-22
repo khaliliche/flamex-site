@@ -1,57 +1,41 @@
-import { getProducts, getGallery } from "@/lib/products"
-import HeroSection from "@/components/HeroSection"
-import CategoryGrid from "@/components/CategoryGrid"
-import TrustBadges from "@/components/TrustBadges"
-import InstagramCTA from "@/components/InstagramCTA"
-import HomeGallery from "@/components/HomeGallery"
+'use client'
+import { useActionState } from 'react'
+import { loginAdmin, type LoginState } from '@/lib/actions'
 
-export default async function Home() {
-  const products = await getProducts()
-  const gallery = await getGallery()
+const initialState: LoginState = {}
 
-  const findImage = (category: string) =>
-    products.find((p) => p.category === category && p.images?.length > 0)?.images[0]
-
-  const images = {
-    dragon: findImage("dragon"),
-    ange: findImage("ange"),
-    carte: findImage("carte"),
-    rond: findImage("rond"),
-  }
+export default function AdminLoginPage() {
+  const [state, formAction, isPending] = useActionState(loginAdmin, initialState)
 
   return (
-    <main>
-      <HeroSection />
-      <TrustBadges />
+    <main className="min-h-screen bg-black flex items-center justify-center px-6">
+      <form action={formAction} className="bg-zinc-900 border border-red-600/30 rounded-xl p-8 w-full max-w-sm">
+        <h1 className="text-2xl font-bold text-white mb-1 text-center">
+          FLAME<span className="text-red-600">X</span>
+        </h1>
+        <p className="text-gray-500 text-sm text-center mb-6">Espace administrateur</p>
 
-      <section className="py-20 px-6 bg-black relative">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-3">
-          Nos <span className="text-red-600">collections</span>
-        </h2>
-        <p className="text-gray-500 text-center mb-16 max-w-md mx-auto">
-          Quatre designs signature, chacun grave a la main.
-        </p>
-        <CategoryGrid images={images} />
-      </section>
+        <input
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+          required
+          autoFocus
+          className="w-full bg-black border border-zinc-700 rounded-lg px-4 py-3 text-white mb-4 focus:border-red-600 outline-none transition"
+        />
 
-      <HomeGallery images={gallery} />
+        {state?.error && (
+          <p className="text-red-500 text-sm mb-4 text-center">{state.error}</p>
+        )}
 
-      <section className="py-16 px-6 bg-zinc-950 border-y border-red-600/10 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-          Suis-nous sur <span className="text-red-600">Instagram</span>
-        </h2>
-        <p className="text-gray-500 mb-8 max-w-md mx-auto">
-          Nouveautes, coulisses et commandes en story.
-        </p>
-        <InstagramCTA />
-      </section>
-
-      <section className="py-16 px-6 bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-center">
-        <div className="max-w-2xl mx-auto">
-          <p className="text-white text-xl md:text-2xl font-bold mb-2">Paiement a la livraison</p>
-          <p className="text-red-100">Livraison partout au Maroc - Commande simple via WhatsApp</p>
-        </div>
-      </section>
+        <button
+          type="submit"
+          disabled={isPending}
+          className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isPending ? 'Connexion...' : 'Se connecter'}
+        </button>
+      </form>
     </main>
   )
 }
