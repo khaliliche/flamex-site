@@ -79,7 +79,7 @@ export default function HeroSection() {
           transition={{ delay: 0.1, duration: 0.6 }}
           className="inline-block font-mono text-[11px] md:text-xs uppercase tracking-[0.25em] text-red-500 border border-red-600/40 rounded-full px-4 py-1.5 mb-8"
         >
-          Édition Rabat · Livraison partout au Maroc
+           Livraison gratuit partout au Maroc
         </motion.span>
 
         <motion.div
@@ -96,8 +96,7 @@ export default function HeroSection() {
           transition={{ delay: 0.55, duration: 0.9 }}
           className="text-gray-400 text-lg md:text-xl mt-2 mb-10 max-w-xl mx-auto"
         >
-          Le briquet torch qui ne s&apos;éteint jamais. Dragon, Ange, Carte,
-          Rond — gravés, pas imprimés.
+          𝑳𝒆 𝒃𝒓𝒊𝒒𝒖𝒆𝒕 𝒕𝒐𝒓𝒄𝒉 𝒒𝒖𝒊 𝒏𝒆 𝒔&apos;é𝒕𝒆𝒊𝒏𝒕 𝒋𝒂𝒎𝒂𝒊𝒔. 𝑫𝒓𝒂𝒈𝒐𝒏, 𝑨𝒏𝒈𝒆, 𝑪𝒂𝒓𝒕𝒆, 𝑹𝒐𝒏𝒅 𝒈𝒓𝒂𝒗é𝒔, 𝒑𝒂𝒔 𝒊𝒎𝒑𝒓𝒊𝒎é𝒔.
         </motion.p>
 
         <motion.div

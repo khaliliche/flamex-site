@@ -12,7 +12,7 @@ export default function Header() {
       <Link href="/" className="flex items-center gap-2">
         <Image src="/logo.png" alt="FlameX" width={40} height={40} className="object-contain" />
         <span className="text-2xl font-bold text-white tracking-tight">
-          FLAME<span className="text-red-600">X</span>
+          𝙁𝙡𝙖𝙢𝙚<span className="text-red-600">𝙓</span>
         </span>
       </Link>
 
