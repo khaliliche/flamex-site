@@ -12,7 +12,7 @@ type CategoryImages = {
 export default function CategoryGrid({ images }: { images: CategoryImages }) {
   const categories = [
     { name: 'Dragon', slug: 'dragon', img: images.dragon },
-    { name: 'Angle', slug: 'ange', img: images.ange },
+    { name: 'Ange', slug: 'ange', img: images.ange },
     { name: 'Carte Flamme', slug: 'carte', img: images.carte },
     { name: 'Rond', slug: 'rond', img: images.rond },
   ]
