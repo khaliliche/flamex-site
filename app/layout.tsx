@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { CartProvider } from "@/lib/cart-context";
+import { Analytics } from "@vercel/analytics/next";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
           <Footer />
           <WhatsAppFloat />
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
