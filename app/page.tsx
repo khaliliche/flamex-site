@@ -20,7 +20,7 @@ export default async function Home() {
 
   const images = {
     dragon: findImage("dragon"),
-    ange: findImage("angle"),
+    angle: "/categories/angle.jpg",
     carte: findImage("carte"),
     rond: findImage("rond"),
   }
@@ -28,14 +28,15 @@ export default async function Home() {
   return (
     <main>
       <HeroSection />
+
       <TrustBadges />
 
-      <section className="py-20 px-6 bg-black relative">
-        <h2 className="font-display uppercase text-3xl md:text-4xl font-bold text-white text-center mb-3">
+      <section className="relative bg-black px-6 py-20">
+        <h2 className="mb-3 text-center font-display text-3xl font-bold uppercase text-white md:text-4xl">
           Nos <span className="text-red-600">collections</span>
         </h2>
 
-        <p className="text-gray-500 text-center mb-16 max-w-md mx-auto">
+        <p className="mx-auto mb-16 max-w-md text-center text-gray-500">
           Quatre designs signature, chacun gravé à la main.
         </p>
 
@@ -48,27 +49,27 @@ export default async function Home() {
 
       <Testimonials testimonials={testimonials} />
 
-      <section className="py-16 px-6 bg-zinc-950 border-y border-red-600/10 text-center">
-        <h2 className="font-display uppercase text-2xl md:text-3xl font-bold text-white mb-3">
+      <section className="border-y border-red-600/10 bg-zinc-950 px-6 py-16 text-center">
+        <h2 className="mb-3 font-display text-2xl font-bold uppercase text-white md:text-3xl">
           Suis-nous sur <span className="text-red-600">Instagram</span>
         </h2>
 
-        <p className="text-gray-500 mb-8 max-w-md mx-auto">
+        <p className="mx-auto mb-8 max-w-md text-gray-500">
           Nouveautés, coulisses et commandes en story.
         </p>
 
         <InstagramCTA />
       </section>
 
-      <section className="relative py-20 px-6 bg-black overflow-hidden text-center">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-red-600/15 blur-[120px] pointer-events-none" />
+      <section className="relative overflow-hidden bg-black px-6 py-20 text-center">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600/15 blur-[120px]" />
 
-        <div className="relative max-w-2xl mx-auto">
-          <p className="font-display uppercase text-white text-2xl md:text-3xl font-bold mb-3">
+        <div className="relative mx-auto max-w-2xl">
+          <p className="mb-3 font-display text-2xl font-bold uppercase text-white md:text-3xl">
             Paiement à la livraison
           </p>
 
-          <p className="text-gray-400 mb-8">
+          <p className="mb-8 text-gray-400">
             Livraison partout au Maroc — commande simple via WhatsApp.
           </p>
 
@@ -76,7 +77,7 @@ export default async function Home() {
             href="https://wa.me/212706821094"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-red-600 text-white font-display uppercase tracking-wide text-sm font-semibold px-9 py-4 rounded-full hover:bg-red-500 hover:shadow-[0_0_35px_rgba(220,38,38,0.6)] transition-all"
+            className="inline-block rounded-full bg-red-600 px-9 py-4 font-display text-sm font-semibold uppercase tracking-wide text-white transition-all hover:bg-red-500 hover:shadow-[0_0_35px_rgba(220,38,38,0.6)]"
           >
             Commander maintenant
           </a>
