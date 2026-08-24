@@ -20,7 +20,7 @@ export default async function Home() {
 
   const images = {
     dragon: findImage("dragon"),
-    ange: findImage("ange"),
+    ange: findImage("angle"),
     carte: findImage("carte"),
     rond: findImage("rond"),
   }

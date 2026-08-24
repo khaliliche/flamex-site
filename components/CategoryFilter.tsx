@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 const categories = [
   { value: "", label: "Tous" },
   { value: "dragon", label: "Dragon" },
-  { value: "ange", label: "Ange" },
+  { value: "angle", label: "Angle" },
   { value: "carte", label: "Carte Flamme" },
   { value: "rond", label: "Rond" },
 ]

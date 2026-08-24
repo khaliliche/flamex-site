@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 const badges = [
   {
     title: "Livraison rapide",
-    desc: "Partout au Maroc, 24-72h",
+    desc: "Partout au Maroc, 24-48h",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M1 7h13v9H1z" />
@@ -36,7 +36,7 @@ const badges = [
   },
   {
     title: "Gravure faite main",
-    desc: "Dragon, Ange, Carte, Rond",
+    desc: "Dragon, Angle, Carte, Rond",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2 3 8l9 6 9-6-9-6z" />

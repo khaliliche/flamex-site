@@ -26,7 +26,7 @@ export default function EditProductModal({ product, onClose }: { product: Produc
             <input name="price" type="number" step="0.01" defaultValue={product.price} required className="bg-black border border-zinc-700 rounded-lg px-4 py-2 text-white" />
             <select name="category" defaultValue={product.category} required className="bg-black border border-zinc-700 rounded-lg px-4 py-2 text-white">
               <option value="dragon">Dragon</option>
-              <option value="ange">Ange</option>
+              <option value="angle">Angle</option>
               <option value="carte">Carte Flamme</option>
               <option value="rond">Rond</option>
             </select>
