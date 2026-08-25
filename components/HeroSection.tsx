@@ -96,7 +96,7 @@ export default function HeroSection() {
           transition={{ delay: 0.55, duration: 0.9 }}
           className="text-gray-400 text-lg md:text-xl mt-2 mb-10 max-w-xl mx-auto"
         >
-          𝙇𝙚 𝙗𝙧𝙞𝙦𝙪𝙚𝙩 𝙩𝙤𝙧𝙘𝙝 𝙦𝙪𝙞 𝙣𝙚 𝙨’&apos;𝙩𝙚𝙞𝙣𝙩 𝙟𝙖𝙢𝙖𝙞𝙨. 𝘿𝙧𝙖𝙜𝙤𝙣, 𝘼𝙣𝙜𝙚𝙇, 𝘾𝙖𝙧𝙩𝙚, 𝙍𝙤𝙣𝙙 𝙜𝙧𝙖𝙫é𝙨, 𝙥𝙖𝙨 𝙞𝙢𝙥𝙧𝙞𝙢é𝙨.
+          𝙇𝙚 𝙗𝙧𝙞𝙦𝙪𝙚𝙩 𝙩𝙤𝙧𝙘𝙝 𝙦𝙪𝙞 𝙣𝙚 𝙨&apos;𝙩𝙚𝙞𝙣𝙩 𝙟𝙖𝙢𝙖𝙞𝙨. 𝘿𝙧𝙖𝙜𝙤𝙣, 𝘼𝙣𝙜𝙚𝙇, 𝘾𝙖𝙧𝙩𝙚, 𝙍𝙤𝙣𝙙 𝙜𝙧𝙖𝙫é𝙨, 𝙥𝙖𝙨 𝙞𝙢𝙥𝙧𝙞𝙢é𝙨.
         </motion.p>
 
         <motion.div
