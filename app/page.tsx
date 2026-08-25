@@ -18,8 +18,8 @@ export default async function Home() {
       (p) => p.category === category && p.images?.length > 0
     )?.images[0]
 
-    const images = {
-    dragon: findImage("dragon"),
+      const images = {
+    dragon: "/categories/dragon.jpg",
     angel: "/categories/angel.jpg",
     carte: findImage("carte"),
     rond: findImage("rond"),
