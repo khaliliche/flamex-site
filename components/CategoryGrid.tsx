@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 type CategoryImages = {
   dragon?: string
-  angle?: string
+  angel?: string
   carte?: string
   rond?: string
 }
@@ -12,7 +12,7 @@ type CategoryImages = {
 export default function CategoryGrid({ images }: { images: CategoryImages }) {
   const categories = [
     { name: 'Dragon', slug: 'dragon', img: images.dragon },
-    { name: 'Angle', slug: 'angle', img: images.angle },
+    { name: 'Angel', slug: 'angel', img: images.angel },
     { name: 'Carte Flamme', slug: 'carte', img: images.carte },
     { name: 'Rond', slug: 'rond', img: images.rond },
   ]

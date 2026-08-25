@@ -2,7 +2,7 @@ export type Product = {
   id: string
   name: string
   price: number
-  category: 'dragon' | 'angle' | 'carte' | 'rond'
+  category: 'dragon' | 'angel' | 'carte' | 'rond'
   images: string[]
   colors: string[]
   description: string

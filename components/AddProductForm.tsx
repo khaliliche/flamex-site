@@ -22,9 +22,9 @@ export default function AddProductForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input name="name" placeholder="Nom du produit" required className="bg-black border border-zinc-700 rounded-lg px-4 py-2 text-white" />
         <input name="price" type="number" step="0.01" placeholder="Prix (DH)" required className="bg-black border border-zinc-700 rounded-lg px-4 py-2 text-white" />
-        <select name="category" required className="bg-black border border-zinc-700 rounded-lg px-4 py-2 text-white">
+                <select name="category" required className="bg-black border border-zinc-700 rounded-lg px-4 py-2 text-white">
           <option value="dragon">Dragon</option>
-          <option value="angle">Angle</option>
+          <option value="angel">Angel</option>
           <option value="carte">Carte Flamme</option>
           <option value="rond">Rond</option>
         </select>

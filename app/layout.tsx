@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "FlameX Briquets Premium",
-  description: "Briquets torch design dragon, angle, carte, rond Livraison partout au Maroc",
+    description: "Briquets torch design dragon, angel, carte, rond Livraison partout au Maroc",
 };
 
 export default function RootLayout({

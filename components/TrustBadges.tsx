@@ -36,7 +36,7 @@ const badges = [
   },
   {
     title: "Gravure faite main",
-    desc: "Dragon, Angle, Carte, Rond",
+    desc: "Dragon, Angel, Carte, Rond",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2 3 8l9 6 9-6-9-6z" />
