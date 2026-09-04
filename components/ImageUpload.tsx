@@ -1,6 +1,6 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { uploadImage } from '@/lib/actions'
 
 export default function ImageUpload({ onUploaded }: { onUploaded: (urls: string[]) => void }) {
   const [uploading, setUploading] = useState(false)
@@ -12,14 +12,11 @@ export default function ImageUpload({ onUploaded }: { onUploaded: (urls: string[
     const newUrls: string[] = []
 
     for (const file of Array.from(files)) {
-      const cleanName = file.name
-  .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-  .replace(/[^a-zA-Z0-9.-]/g, '-')
-   const fileName = `${Date.now()}-${cleanName}`
-      const { error } = await supabase.storage.from('products').upload(fileName, file)
-      if (!error) {
-        const { data } = supabase.storage.from('products').getPublicUrl(fileName)
-        newUrls.push(data.publicUrl)
+      const formData = new FormData()
+      formData.append('file', file)
+      const result = await uploadImage(formData)
+      if ('url' in result) {
+        newUrls.push(result.url)
       }
     }
 

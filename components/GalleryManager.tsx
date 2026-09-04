@@ -1,7 +1,6 @@
-"use client"
+﻿"use client"
 import { useState } from "react"
-import { supabase } from "@/lib/supabase"
-import { addGalleryImage, deleteGalleryImage } from "@/lib/actions"
+import { uploadImage, addGalleryImage, deleteGalleryImage } from "@/lib/actions"
 
 type GalleryImage = { id: string; url: string }
 
@@ -12,12 +11,11 @@ export default function GalleryManager({ images }: { images: GalleryImage[] }) {
     if (!files) return
     setUploading(true)
     for (const file of Array.from(files)) {
-      const cleanName = file.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9.-]/g, "-")
-      const fileName = `gallery-${Date.now()}-${cleanName}`
-      const { error } = await supabase.storage.from("products").upload(fileName, file)
-      if (!error) {
-        const { data } = supabase.storage.from("products").getPublicUrl(fileName)
-        await addGalleryImage(data.publicUrl)
+      const formData = new FormData()
+      formData.append('file', file)
+      const result = await uploadImage(formData)
+      if ('url' in result) {
+        await addGalleryImage(result.url)
       }
     }
     setUploading(false)

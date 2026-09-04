@@ -1,5 +1,6 @@
-'use server'
-import { supabase } from './supabase'
+﻿'use server'
+import { sql } from './db'
+import { put } from '@vercel/blob'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createAdminSession, destroyAdminSession, requireAdmin } from './auth'
@@ -26,6 +27,29 @@ export async function logoutAdmin() {
   redirect('/admin')
 }
 
+function toPgArray(arr: string[]): string {
+  return '{' + arr.map(v => '"' + v.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"').join(',') + '}'
+}
+
+export async function uploadImage(formData: FormData): Promise<{ url: string } | { error: string }> {
+  await requireAdmin()
+  const file = formData.get('file') as File
+  if (!file) return { error: 'Aucun fichier' }
+
+  const cleanName = file.name
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9.-]/g, '-')
+  const fileName = `${Date.now()}-${cleanName}`
+
+  try {
+    const blob = await put(fileName, file, { access: 'public' })
+    return { url: blob.url }
+  } catch (error) {
+    console.error('[uploadImage] Blob error:', error)
+    return { error: "Erreur lors de l'upload" }
+  }
+}
+
 export async function addProduct(formData: FormData) {
   await requireAdmin()
 
@@ -38,27 +62,25 @@ export async function addProduct(formData: FormData) {
   const colorsRaw = formData.get('colors') as string
   const colors = colorsRaw.split(',').map(c => c.trim()).filter(Boolean)
 
-  const { error } = await supabase.from('products').insert({
-    name, price, category, description, images, colors, stock: true
-  })
+  await sql`
+    INSERT INTO products (name, price, category, description, images, colors, stock)
+    VALUES (${name}, ${price}, ${category}, ${description}, ${toPgArray(images)}::text[], ${toPgArray(colors)}::text[], true)
+  `
 
-  if (error) throw error
   revalidatePath('/admin/dashboard')
   revalidatePath('/catalogue')
 }
 
 export async function deleteProduct(id: string) {
   await requireAdmin()
-  const { error } = await supabase.from('products').delete().eq('id', id)
-  if (error) throw error
+  await sql`DELETE FROM products WHERE id = ${id}`
   revalidatePath('/admin/dashboard')
   revalidatePath('/catalogue')
 }
 
 export async function toggleStock(id: string, currentStock: boolean) {
   await requireAdmin()
-  const { error } = await supabase.from('products').update({ stock: !currentStock }).eq('id', id)
-  if (error) throw error
+  await sql`UPDATE products SET stock = ${!currentStock} WHERE id = ${id}`
   revalidatePath('/admin/dashboard')
   revalidatePath('/catalogue')
 }
@@ -75,30 +97,31 @@ export async function updateProduct(id: string, formData: FormData) {
   const colorsRaw = formData.get('colors') as string
   const colors = colorsRaw.split(',').map(c => c.trim()).filter(Boolean)
 
-  const { error } = await supabase.from('products').update({
-    name, price, category, description, images, colors
-  }).eq('id', id)
+  await sql`
+    UPDATE products
+    SET name = ${name}, price = ${price}, category = ${category},
+        description = ${description}, images = ${toPgArray(images)}::text[], colors = ${toPgArray(colors)}::text[]
+    WHERE id = ${id}
+  `
 
-  if (error) throw error
   revalidatePath('/admin/dashboard')
   revalidatePath('/catalogue')
 }
 
 export async function addGalleryImage(url: string) {
   await requireAdmin()
-  const { error } = await supabase.from("gallery").insert({ url })
-  if (error) throw error
-  revalidatePath("/admin/dashboard")
-  revalidatePath("/")
+  await sql`INSERT INTO gallery (url) VALUES (${url})`
+  revalidatePath('/admin/dashboard')
+  revalidatePath('/')
 }
 
 export async function deleteGalleryImage(id: string) {
   await requireAdmin()
-  const { error } = await supabase.from("gallery").delete().eq("id", id)
-  if (error) throw error
-  revalidatePath("/admin/dashboard")
-  revalidatePath("/")
+  await sql`DELETE FROM gallery WHERE id = ${id}`
+  revalidatePath('/admin/dashboard')
+  revalidatePath('/')
 }
+
 export async function addTestimonial(formData: FormData) {
   await requireAdmin()
 
@@ -106,8 +129,7 @@ export async function addTestimonial(formData: FormData) {
   const city = formData.get('city') as string
   const rating = Math.min(5, Math.max(1, Number(formData.get('rating')) || 5))
 
-  const { error } = await supabase.from('testimonials').insert({ quote, city, rating })
-  if (error) throw error
+  await sql`INSERT INTO testimonials (quote, city, rating) VALUES (${quote}, ${city}, ${rating})`
   revalidatePath('/admin/dashboard')
   revalidatePath('/')
 }
@@ -119,16 +141,14 @@ export async function updateTestimonial(id: string, formData: FormData) {
   const city = formData.get('city') as string
   const rating = Math.min(5, Math.max(1, Number(formData.get('rating')) || 5))
 
-  const { error } = await supabase.from('testimonials').update({ quote, city, rating }).eq('id', id)
-  if (error) throw error
+  await sql`UPDATE testimonials SET quote = ${quote}, city = ${city}, rating = ${rating} WHERE id = ${id}`
   revalidatePath('/admin/dashboard')
   revalidatePath('/')
 }
 
 export async function deleteTestimonial(id: string) {
   await requireAdmin()
-  const { error } = await supabase.from('testimonials').delete().eq('id', id)
-  if (error) throw error
+  await sql`DELETE FROM testimonials WHERE id = ${id}`
   revalidatePath('/admin/dashboard')
   revalidatePath('/')
 }
